@@ -9,14 +9,25 @@ size=${#word}
 # print the number
 echo "Your word contain $size letters"
 
-read  -r -p "Do you want to proceed?" ask
+input_from() {
+read  -r -p "Do you want to proceed? " ask
+}
+
+input_from
+
+ask_func() {
 case $ask in
 y|Y)
-  echo "You said yes"
+  echo "Your word in reverse: "
+  echo $word | rev # do reverse for word
   ;;
 n|N)
-  echo "You said no"
+  printf "You said no\nThat is very sad :(\n"
   ;;
 *)
   echo "Please use N/n or Y/y"
 esac
+}
+ask_func
+
+input_from
