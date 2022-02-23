@@ -18,9 +18,11 @@ gz )
 bz2)
   echo "Your compressed file has $file2 extension "
   tar -xvjf $file -C .
+  echo "Done"
   ;;
 xf)
   echo "Your compressed file has $file2 extension "
   tar -xf $file -C .
+  echo "Done"
   ;;
 esac
