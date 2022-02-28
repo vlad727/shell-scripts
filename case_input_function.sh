@@ -4,8 +4,7 @@
 ask_func() {
 case $ask in
 y|Y)
-  echo "Your word in reverse: "
-  echo $word | rev # do reverse for word
+  echo "That is good "
   ;;
 n|N)
   printf "You said no\nThat is very sad :(\n"
@@ -34,5 +33,21 @@ echo "Your word contain $size letters"
 input_from
 
 ask_func
+sleep 1
+#input_from
+echo "Your word in reverse"
+sleep 1
+echo  $word | rev # do reverse for word
+
+# ask again
+input_from
+ask_func
+sleep 1
+
+echo "Your word in uppercase"
+echo ${word^^} # change it to uppercase
 
 input_from
+ask_func
+
+echo "Sorry this the end"
