@@ -2,15 +2,28 @@
 
 # $1 username 
 # $2 password
+# $3 hostname
 
-# add user 
-useradd $1 
+# check if user already exist
+# set password for user
+# add user to group wheel
+if [[ $1 -eq "vlad" ]]
+then echo -n "$1 already exist
+Please use another name"
+else useradd $1 && echo "$1:$2" | sudo chpasswd  && usermod -a -G wheel $1
+fi
 
-# set password for user 
-echo "$1:$2" | sudo chpasswd 
 
-# add user to group wheel 
-usermod -a -G wheel $1
 
 # set no_passwd
-cat /etc/sudoers | grep "# %wheel" | sed -e 's/# %wheel/ %vlad/g' >  /etc/sudoers.d/no_passwd
+#cat /etc/sudoers | grep "# %wheel" | sed -e 's/# %wheel/ %vlad/g' >  /etc/sudoers.d/no_passwd
+
+# set hostname
+hostnamectl set-hostname $3
+echo "New hostname for this sever is $3"
+
+# install software
+yum install epel-release net-tools git vim -y
+
+# generate keys
+#ssh-keygen
