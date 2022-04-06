@@ -17,6 +17,7 @@ fi
 
 # set no_passwd
 #cat /etc/sudoers | grep "# %wheel" | sed -e 's/# %wheel/ %vlad/g' >  /etc/sudoers.d/no_passwd
+echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 
 # set hostname
 hostnamectl set-hostname $3
