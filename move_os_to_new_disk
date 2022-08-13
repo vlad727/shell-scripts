@@ -26,3 +26,23 @@ rsync -av /old/* /new/
 mount /dev/mapper/centos-home /old/
 mount /dev/mapper/centos1-home1 /new/
 rsync -av /old/* /new/
+
+### mount dirs for chroot ###
+mount /dev/sdb1 /new/boot
+ls /new/boot/
+lsblk -f
+mount --bind /dev /new/dev
+mount --bind /sys /new/sys
+mount --bind /proc /new/proc
+### chroot to new os ####
+chroot /new   
+[root@localhost ~]#    ### old system with name localhost
+[root@change-disk /]#  ### new system with name change-disk 
+### fix defult grub file ###
+vi /etc/default/grub
+### change grub2 ###
+grub2-mkconfig -o /boot/grub2/grub.cfg
+### install grub for new sdb disk ###
+grub2-install /dev/sdb
+### finished ####
+### try to boot from new disk ###
