@@ -26,7 +26,9 @@ rsync -av /old/* /new/
 mount /dev/mapper/centos-home /old/
 mount /dev/mapper/centos1-home1 /new/
 rsync -av /old/* /new/
-
+### change fstab with new UUID and LVM's ###
+ mount /dev/mapper/centos1-root1 /new/
+ vim /new/etc/fstab
 ### mount dirs for chroot ###
 mount /dev/sdb1 /new/boot
 ls /new/boot/
